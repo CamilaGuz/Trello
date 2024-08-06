@@ -15,11 +15,11 @@ export class AuthService {
   register(userData: any): Observable<any> {
     return new Observable(observer => {
       axios.post(this.apiUrl, userData)
-        .then(response => {
+        .then((response:any) => {
           observer.next(response.data);
           observer.complete();
         })
-        .catch(error => {
+        .catch((error:any) => {
           observer.error(error.response.data);
         });
     });
