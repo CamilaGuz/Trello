@@ -10,7 +10,7 @@ export class AuthService {
   
   constructor(private http: HttpClient) {}
 
-  private apiUrl = 'http://localhost:8081/api/v1/sessions';
+  private apiUrl = 'http://localhost:8081/api/v1/sessions/register';
 
   register(userData: any): Observable<any> {
     const headers = new HttpHeaders({
