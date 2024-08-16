@@ -1,28 +1,24 @@
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios from 'axios';
 import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  
+  constructor(private http: HttpClient) {}
 
-  private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
-
-
-  constructor() {}
+  private apiUrl = 'http://localhost:8081/api/v1/sessions';
 
   register(userData: any): Observable<any> {
-    return new Observable(observer => {
-      axios.post(this.apiUrl, userData)
-        .then((response:any) => {
-          observer.next(response.data);
-          observer.complete();
-        })
-        .catch((error:any) => {
-          observer.error(error.response.data);
-        });
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
     });
+    return this.http.post<any>(this.apiUrl, userData, { headers });
+
   }
 }
+
 
